@@ -18,20 +18,20 @@ if exist installing.tmp (
 if exist browser_setup.tag (
     goto already
 )
-echo Setup MiniWorld Browser Startup Tools
+echo Setup MiniWorld Browser Startup Utility
 echo =============================================
-echo a. This PC is already installed MiniWorld.
-echo b. I did not install it, please do it auto.
+echo a. This PC already installed MiniWorld.
+echo b. plz help me to do that
 set Mode="!"
 :loop_begin
-set /p Mode="mode_select$"
+set /p Mode="$ "
 if %Mode%==a (
     goto prep_2
 )
 if %Mode%==b (
     goto prep_1
 )
-echo Sorry, please input a or b.
+echo plz input a or b.
 goto loop_begin
 :prep_1
 echo Downloading...
@@ -59,18 +59,15 @@ if %errorlevel%==0 (
 :kill
 taskkill /im MicroMiniNew.exe
 echo temp>installing.tmp
-echo Now you should log-in the game and download files in the game.
-echo Because some plug-ins are not installed now.
-echo When you can play the game, please close it and next your setup.
+echo Please log-in to download assets and execute again.
 echo Press any key to exit...
 pause>nul
 goto ExitPoint
 :prep_2
-echo Now the program is preparing the runtime environment.
-echo PLEASE WAIT!
+echo Preparing the runtime environment.
 echo 114514>browser_setup.tag
 timeout /t 3 /nobreak>nul
-echo Prepare is done, press any key to continue...
+echo done, press any key to continue...
 pause>nul
 :already
 if %argC%==2 (
@@ -91,18 +88,18 @@ if %1==-o (
 minibr %1
 goto ExitPoint
 :Read
-set /p net_addr="Target address:"
+set /p net_addr="Address:"
 if %Lite%==0 (
     goto Query
 )
 goto Exec
 :Query
-echo Now you should select the kernal.
-echo a=Chromium(New, MicroMiniForWebBrowser.exe)
-echo b=IE(Old, MicroMiniForWebBrowserOld.exe)
+echo select browser kernel
+echo a=Chromium(MicroMiniForWebBrowser.exe)
+echo b=IE(MicroMiniForWebBrowserOld.exe)
 set eO=c
 :Query_head
-set /p eO="mode_select$"
+set /p eO="$ "
 if %eO%==a (
     goto Exec
 )
@@ -110,7 +107,7 @@ if %eO%==b (
     set Execa=minibr -o
     goto Exec
 )
-echo Sorry,please input a or b.
+echo plz input a or b.
 goto Query_head
 :Exec
 echo !!!EXECUTING!!!
