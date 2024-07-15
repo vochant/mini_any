@@ -11,15 +11,13 @@ for %%x in (%*) do (
     set /a argC+=1
 )
 
-echo [INFO] Success to get argc
+echo [INFO] Successfully got argc
 
 if %argC%==0 (
     echo minibr Address [-o]
-    echo -o:Use classic version
+    echo -o: Use IE kernel
     goto finish
 )
-
-echo [INFO] Argc is OK
 
 if %argC%==2 ( 
     goto t1
@@ -28,7 +26,6 @@ if %argC%==2 (
 goto f1
 
 :t1
-echo [INFO] Running double-args proc.
 if %1==-o (
     goto firsto
 )
@@ -37,29 +34,25 @@ goto secondproc
 
 :firsto
 echo %App2% -%2>exec.bat
-echo [INFO] Finded -o at argv[1]
-echo [WARN] Running IE version.
+echo [INFO] Found -o at argv[1]
+echo [WARN] Running IE kernel.
 goto execr
 
 :secondproc
-echo [INFO] Proccess-DA:normal
 
 if %2==-o (
-    echo [INFO] Go-to normal
     goto normal
 ) else (
-    echo [INFO] Go-to error
     goto error
 )
 
 :normal
 echo %App2% -%1>exec.bat
-echo [INFO] Finded -o at argv[2]
-echo [WARN] Running classic version.
+echo [INFO] Found -o at argv[2]
+echo [WARN] Running IE kernel.
 
 goto execr
 :f1
-echo [INFO] Running normal mode
 echo %App% -%1>exec.bat
 
 :execr
@@ -68,7 +61,7 @@ exec.bat
 del exec.bat
 goto finish
 :error
-echo [ERROR] Unknown arg.
+echo [ERROR] Unknown args.
 goto finish
 :finish
 
